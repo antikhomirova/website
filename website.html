@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna Tikhomirova - Bioengineering</title>
+    <!-- External Dependencies: Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS reset & base */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #050010;
+            /* Dark purple/black */
+            background-image:
+                linear-gradient(transparent 95%, rgba(255, 0, 204, 0.3) 95%),
+                linear-gradient(90deg, transparent 95%, rgba(0, 255, 204, 0.3) 95%);
+            background-size: 30px 30px;
+            color: #fff;
+            font-family: 'VT323', 'Courier New', monospace;
+            font-size: 1.3rem;
+            /* Retro Y2K Cursor */
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23ff00cc' stroke='%2300ffcc' stroke-width='1.5' d='M0,0 L16,8 L9,10 L12,16 L9,16 L6,10 L0,16 Z'/%3E%3C/svg%3E"), auto;
+            overflow-x: hidden;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        a,
+        .btn,
+        .card,
+        .modal-close,
+        .project-link {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%2300ffcc' stroke='%23ff00cc' stroke-width='1.5' d='M0,0 L16,8 L9,10 L12,16 L9,16 L6,10 L0,16 Z'/%3E%3C/svg%3E"), pointer !important;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Press Start 2P', cursive;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        h1 {
+            color: #ff00cc;
+            font-size: 2rem;
+            text-shadow: 3px 3px #00ffcc, -2px -2px #ccff00;
+        }
+
+        h2 {
+            color: #00ffcc;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px #ff0066;
+        }
+
+        h3 {
+            color: #ccff00;
+            font-size: 1rem;
+        }
+
+        h4 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ff00cc;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        /* UI Elements */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 4px solid #ccff00;
+            box-shadow: 8px 8px 0px rgba(0, 255, 204, 0.6);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        /* Nav */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px dashed #ff00cc;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav a {
+            color: #00ffcc;
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+        .nav a:hover {
+            color: #ff00cc;
+            text-shadow: 0 0 5px #00ffcc;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: #ff0066;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            text-transform: uppercase;
+            padding: 15px 20px;
+            border: 4px solid #ff00cc;
+            text-decoration: none;
+            box-shadow: 4px 4px 0px #00ffcc;
+            transition: all 0.2s;
+            font-size: 0.8rem;
+        }
+
+        .btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #00ffcc;
+            background: #ff00cc;
+            color: #ccff00;
+        }
+
+        /* Animations */
+        @keyframes blink {
+
+            0%,
+            49% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+                text-shadow: 0 0 10px #ff0066;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .heartbeat {
+            color: #ff0066;
+            display: inline-block;
+            animation: pulse 1s infinite;
+            margin-left: 10px;
+            font-size: 2.5rem;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinning-cd {
+            display: inline-block;
+            animation: spin 2s linear infinite;
+            font-size: 1.5rem;
+            vertical-align: middle;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #ff00cc;
+            color: #ccff00;
+            font-family: 'Press Start 2P', cursive;
+            padding: 8px 0;
+            border-top: 3px solid #00ffcc;
+            border-bottom: 3px solid #00ffcc;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
+
+        /* Scroll Reveal (Fade-in) classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        .hero-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #00ffcc;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 255, 204, 0.5);
+            font-family: 'Press Start 2P', cursive;
+            line-height: 1.6;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #ccff00;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border: 1px dashed #ccff00;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* Project Cards */
+        .card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 4px solid #00ffcc;
+            box-shadow: 6px 6px 0px #ff00cc;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 255, 255, 0.2) 5px, rgba(255, 255, 255, 0.2) 10px);
+        }
+
+        .card:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 20px #00ffcc, inset 0 0 10px #00ffcc;
+            border-color: #fff;
+            z-index: 10;
+        }
+
+        .card h3 {
+            border-bottom: 2px dashed #ff00cc;
+            padding-bottom: 10px;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        .card p {
+            color: #fff;
+            margin-top: 5px;
+            flex-grow: 1;
+        }
+
+        .card .btn-details {
+            margin-top: 15px;
+            background: #000;
+            color: #00ffcc;
+            border: 2px solid #00ffcc;
+            padding: 8px 12px;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .card:hover .btn-details {
+            background: #00ffcc;
+            color: #000;
+        }
+
+        /* Modal / Lightbox */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeInModal 0.3s ease forwards;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: #050010;
+            border: 4px solid #ff00cc;
+            box-shadow: 0 0 30px rgba(255, 0, 204, 0.8), inset 0 0 20px rgba(0, 255, 204, 0.3);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 30px;
+            color: #fff;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff0066;
+            color: #fff;
+            border: 2px solid #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 0 #ccff00;
+        }
+
+        .modal-close:hover {
+            background: #fff;
+            color: #ff0066;
+            transform: scale(1.1);
+        }
+
+        .modal-body h3 {
+            color: #00ffcc;
+            margin-top: 0;
+            padding-right: 30px;
+            /* space for the close button */
+        }
+
+        .modal-body p {
+            margin-bottom: 20px;
+        }
+
+        .modal-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            border-top: 2px dashed #00ffcc;
+            padding-top: 20px;
+        }
+
+        .project-link {
+            background: #111;
+            color: #ccff00;
+            border: 2px solid #ccff00;
+            padding: 8px 12px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .project-link:hover {
+            background: #ccff00;
+            color: #000;
+            box-shadow: 2px 2px 0 #ff00cc;
+        }
+
+        /* Terminal CV */
+        .terminal {
+            background-color: #000;
+            border: 4px solid #ff0066;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.5);
+        }
+
+        .terminal-header {
+            background: #ff0066;
+            color: #fff;
+            padding: 10px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            color: #ccff00;
+            line-height: 1.6;
+            height: 100%;
+        }
+
+        .terminal-body strong {
+            color: #fff;
+        }
+
+        .terminal-body span.prompt {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+
+        /* Lists */
+        .ul-retro {
+            list-style: square;
+            color: #ff00cc;
+            font-size: 1.2rem;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .ul-retro li {
+            margin-bottom: 20px;
+        }
+
+        .ul-retro li span {
+            color: #fff;
+        }
+
+        /* Footer / ECG */
+        footer {
+            margin-top: 50px;
+            border-top: 4px dashed #00ffcc;
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .ecg-container {
+            width: 100%;
+            height: 120px;
+            background: #000;
+            border: 3px solid #00ffcc;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 15px rgba(0, 255, 204, 0.5);
+        }
+
+        #ecgCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .now-playing {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: #ccff00;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid #ff00cc;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050010;
+            border-left: 2px solid #00ffcc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff00cc;
+            border: 2px solid #050010;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            h4 {
+                font-size: 1rem;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            /* Responsive Hero Layout for Mobile */
+            .hero-flex {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .hero-flex-content .hero-title-container {
+                justify-content: center;
+            }
+        }
+
+        /* Y2K Photo & Hero Flex Layout */
+        .hero-flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            text-align: left;
+        }
+
+        .hero-flex-content {
+            flex: 1;
+        }
+
+        .hero-flex-content .hero-title-container {
+            justify-content: flex-start;
+        }
+
+        .y2k-photo {
+            position: relative;
+            transform: rotate(-2deg);
+            z-index: 5;
+            flex-shrink: 0;
+            width: 220px;
+            margin: 0 auto;
+        }
+
+        .y2k-photo-frame {
+            background-color: #fff;
+            padding: 10px 10px 30px 10px;
+            border: 4px solid #ff00cc;
+            box-shadow: 2px 2px 0px #00ffcc, 8px 8px 15px rgba(0, 0, 0, 0.8), -4px -4px 10px rgba(255, 0, 204, 0.3);
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .y2k-photo-frame::after {
+            content: "Anna • 2000s";
+            position: absolute;
+            bottom: 3px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #ff00cc;
+            font-family: 'VT323', monospace;
+            font-size: 1.3rem;
+            text-shadow: none;
+            font-weight: bold;
+        }
+
+        .y2k-img-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .y2k-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.2s;
+        }
+
+        .y2k-pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(rgba(0, 255, 204, 0.6) 2px, transparent 2px);
+            background-size: 8px 8px;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: movePattern 15s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes movePattern {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100px 100px;
+            }
+        }
+
+        .orbit-star {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 1.5rem;
+            color: #ccff00;
+            text-shadow: 0 0 5px #00ffcc;
+            animation: orbit 4s linear infinite;
+            transform-origin: 130px 130px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translate(140px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translate(140px) rotate(-360deg);
+            }
+        }
+
+        /* Hover Glitch and Chromatic Effects */
+        .y2k-photo:hover .y2k-photo-frame {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            box-shadow: 2px 2px 0px #00ffcc, -2px -2px 0px #ff00cc, 0 0 20px #ff00cc;
+        }
+
+        .y2k-photo:hover img {
+            filter: drop-shadow(2px 0 0 red) drop-shadow(-2px 0 0 cyan);
+            animation: glitch-anim 0.2s linear infinite;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+                filter: drop-shadow(3px 0 0 red) drop-shadow(-3px 0 0 cyan);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+                filter: drop-shadow(-3px 0 0 red) drop-shadow(3px 0 0 cyan);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+                filter: drop-shadow(3px 0 0 red) drop-shadow(-3px 0 0 cyan);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+                filter: drop-shadow(-3px 0 0 red) drop-shadow(3px 0 0 cyan);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes glitch-skew {
+            0% {
+                transform: skew(0deg);
+            }
+
+            20% {
+                transform: skew(-2deg);
+            }
+
+            40% {
+                transform: skew(2deg);
+            }
+
+            60% {
+                transform: skew(-1deg);
+            }
+
+            80% {
+                transform: skew(1deg);
+            }
+
+            100% {
+                transform: skew(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="marquee">
+        <span>> // WARNING: HIGH VOLTAGE // CURRENT OBJECTIVE: BIO-INTERFACE // SETTING GLOBAL HEALTH STANDARDS // <<<
+                /span>
+    </div>
+
+    <nav class="nav">
+        <a href="#about">[ About Me ]</a>
+        <a href="#skills-exp">[ Skills & Exp ]</a>
+        <a href="#projects">[ Projects ]</a>
+        <a href="#education">[ Education ]</a>
+        <a href="#contact">[ Connect ]</a>
+    </nav>
+
+    <div class="container">
+        <header class="hero glass-panel fade-in">
+            <div class="hero-flex">
+                <div class="y2k-photo">
+                    <div class="orbit-star">✨</div>
+                    <div class="y2k-photo-frame">
+                        <div class="y2k-img-container">
+                            <img src="file:///C:/Users/antik/.gemini/antigravity/brain/ef2191d3-515f-4584-986d-a79d398c396f/anna_y2k_stylish_1775014435594.png"
+                                alt="Anna Tikhomirova">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-flex-content">
+                    <div class="hero-title-container">
+                        <h1>Anna Tikhomirova</h1>
+                        <span class="heartbeat" title="Medical Device Developer">❤️‍🔥🩺</span>
+                        <span class="sparkles"
+                            style="color: #ffff00; font-size: 1.5rem; animation: blink 0.5s infinite alternate;">✨</span>
+                    </div>
+                    <div class="tagline">&gt; Building the future of medical technology_</div>
+                    <div class="quote">"Combine science, technology and business to create a healthier future for people
+                        across
+                        the globe."</div>
+                </div>
+            </div>
+        </header>
+
+        <section id="about" class="fade-in">
+            <div class="glass-panel" style="border-color: #ff00cc; box-shadow: 8px 8px 0px rgba(255, 0, 204, 0.6);">
+                <h2>:: About Me</h2>
+                <p>
+                    I am a bioengineering student at The Hong Kong University of Science and Technology (HKUST),
+                    recipient of the Full-tuition admission scholarship and the Beyond Academic Awards scholarship.
+                    I am passionate about combining engineering, technology and business to
+                    create a healthier future for people across the globe. <span class="blink"
+                        style="color:#00ffcc; font-weight:bold;">|</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills and Experience -->
+        <section id="skills-exp" class="fade-in">
+            <div class="grid-2">
+                <!-- Skills as Y2K Data Sheet (Terminal) -->
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span>C:\USER\ANNA\SKILLS.EXE</span>
+                        <span>_ □ X</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">admin@hkust:~$</span> load_data --category=skills</p>
+                        <p>Loading skills module... <span class="blink" style="color:#ff00cc;">[OK]</span></p>
+                        <br>
+                        <p><strong>Languages:</strong> Russian (native), English (C1), Mandarin (HSK4)</p>
+                        <p><strong>Technical:</strong> Python, HTML, Microsoft Azure, Thunkable, Figma, Excel,
+                            PowerPoint, Canva</p>
+                        <p><strong>Soft:</strong> Problem-solving, leadership, analytical thinking, stress resistance,
+                            creativity, communication</p>
+                        <p><strong>Lab/Engineering:</strong> Electrochemical sensors, data analysis, circuit design
+                            (basic), 3D printing (basics)</p>
+                        <br>
+                        <p><span class="prompt">admin@hkust:~$</span> <span class="blink">_</span></p>
+                    </div>
+                </div>
+
+                <!-- Experience highlights -->
+                <div class="glass-panel"
+                    style="border-color: #00ffcc; box-shadow: 8px 8px 0px rgba(0, 255, 204, 0.6); margin-bottom: 0;">
+                    <h2>:: Experience highlights</h2>
+                    <ul class="ul-retro" style="font-size: 1.5rem; line-height: 1.6;">
+                        <li><span><strong>Undergraduate researcher @ HKUST Bioelectronics Lab</strong>
+                                (2026–present)<br>– saliva-based biomarker sensor</span></li>
+                        <li><span><strong>Engineering intern @ HKPC, Green Living and Innovation division</strong>
+                                (2025-2026)<br>- conducted research on LFP battery recycling, led team to 1st place with
+                                PiColo (AI PPE compliance system)</span></li>
+                        <li><span><strong>Medical Technology Developer @ SIGHT</strong> (2025)<br>– data management
+                                system for diabetes & hypertension patients in Philippines</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="fade-in">
+            <h2>:: Projects <span class="spinning-cd">💿</span></h2>
+
+            <h4>> University & Current</h4>
+            <div class="grid" style="margin-bottom: 40px;">
+                <div class="card" style="border-color: #00ffcc; box-shadow: 6px 6px 0px #ff00cc;"
+                    onclick="openModal('modal1')">
+                    <h3>1. Saliva‑Based Biomarker Sensor</h3>
+                    <p><span>Electrochemical sensor for blood biomarkers from saliva. Research @ HKUST
+                            Bioelectronics Lab.</span></p>
+                    <span class="btn-details">Details ></span>
+                </div>
+
+                <div class="card" style="border-color: #ccff00; box-shadow: 6px 6px 0px #00ffcc;"
+                    onclick="openModal('modal2')">
+                    <h3>2. COPS</h3>
+                    <p><strong>[ Lab‑on‑a‑chip device ]</strong></p>
+                    <p><span>Climate-adaptive water device. 2nd prize Global Sustainability Challenge 2025‑26.</span>
+                    </p>
+                    <span class="btn-details">Details ></span>
+                </div>
+
+                <div class="card" style="border-color: #ff0066; box-shadow: 6px 6px 0px #ccff00;"
+                    onclick="openModal('modal3')">
+                    <h3>3. PantoL</h3>
+                    <p><strong>[ AI sign language translation app ]</strong></p>
+                    <p><span>150+ testers, 4 charitable partnerships, 2 business accelerators.</span></p>
+                    <span class="btn-details">Details ></span>
+                </div>
+            </div>
+
+            <h4>> High School Projects</h4>
+            <div class="grid">
+                <div class="card" style="border-color: #ff00cc; box-shadow: 6px 6px 0px #00ffcc;"
+                    onclick="openModal('modal4')">
+                    <h3>4. BIRD</h3>
+                    <p><strong>[ Charitable mHealth project ]</strong></p>
+                    <p><span>Meditation & thought exchange. 30+ team members from 5+ countries, audience 5k+, 10+
+                            webinars.</span></p>
+                    <span class="btn-details">Details ></span>
+                </div>
+
+                <div class="card" style="border-color: #00ffcc; box-shadow: 6px 6px 0px #ff0066;"
+                    onclick="openModal('modal5')">
+                    <h3>5. AI in Russian education</h3>
+                    <p><span>Research on real-world applications and problems of AI.</span></p>
+                    <span class="btn-details">Details ></span>
+                </div>
+
+                <div class="card" style="border-color: #ccff00; box-shadow: 6px 6px 0px #ff00cc;"
+                    onclick="openModal('modal6')">
+                    <h3>6. DNA extraction at home</h3>
+                    <p><span>Hands-on biotech experiment (2022).</span></p>
+                    <span class="btn-details">Details ></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="fade-in">
+            <div class="glass-panel" style="border-color: #ff0066; box-shadow: 8px 8px 0px rgba(255, 0, 102, 0.6);">
+                <h2>:: Education snapshot</h2>
+                <ul class="ul-retro">
+                    <li><span><strong>BEng Bioengineering @ HKUST</strong> (2025–2029) – full scholarship + Beyond
+                            Academic Awards</span></li>
+                    <li><span><strong>International Foundation Program @ Jiangsu University</strong> (2024–2025)</span>
+                    </li>
+                    <li><span><strong>iGEM summer camp @ Nazarbayev University</strong> (2023)</span></li>
+                    <li><span><strong>Lyceum №10 named after D.I.Mendeleev </strong> Gold Medal & Red Diplomas (9th &
+                            11th grade) – outstanding academic achievement</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in" style="text-align: center; margin-top: 80px;">
+            <h2>:: Initialize Connect_</h2>
+            <p style="margin-bottom: 30px;">Ready to innovate? Reach out across the digital void.</p>
+            <div
+                style="font-family: 'Press Start 2P', cursive; font-size: 0.8rem; line-height: 2; margin-bottom: 30px; color: #00ffcc; background: rgba(0,0,0,0.5); padding: 20px; border: 2px dashed #ff00cc; display: inline-block;">
+                EMAIL: atikhomirova@connect.ust.hk<br>
+                PHONE: +852-7050-16-39
+            </div>
+            <br>
+            <div style="margin-top: 10px;">
+                <a href="mailto:atikhomirova@connect.ust.hk" class="btn">✉ MSG SYSTEM</a>
+                <a href="https://www.linkedin.com/in/ann-tik/" target="_blank" class="btn"
+                    style="background:#ccff00; color:#000; border-color:#000; margin-left:15px;">[ LINKEDIN ]</a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="now-playing">▶ Now Playing: Heartbeat_Diagnostic.mp3 <span class="blink">▮▮</span></div>
+            <div class="ecg-container">
+                <canvas id="ecgCanvas"></canvas>
+            </div>
+            <p
+                style="font-family: 'Press Start 2P', cursive; font-size: 0.6rem; color: #ff00cc; padding-bottom: 20px; margin-top: 20px;">
+                © 2026 ANNA TIKHOMIROVA - CONSTRUCTED IN CYBERSPACE
+            </p>
+        </footer>
+    </div>
+
+    <!-- Modals Overlay -->
+    <div id="modalOverlay" class="modal-overlay" onclick="closeModalOnOutside(event)">
+        <!-- Modal 1 -->
+        <div id="modal1" class="modal-content" style="display: none;">
+            <button class="modal-close" onclick="closeModal()">X</button>
+            <div class="modal-body">
+                <h3>Saliva‑Based Biomarker Sensor</h3>
+                <p><strong>Goal:</strong> Point‑of‑care electrochemical sensor for blood biomarkers in saliva</p>
+                <p><strong>Methods:</strong> Sensor calibration • reagent optimization • cyclic voltammetry •
+                    electrochemical impedance spectroscopy • data analysis (Python)</p>
+                <p><strong>Outcomes:</strong> Improved detection sensitivity • validated electrode modifications •
+                    integrated sensor into microfluidic cartridge prototype.</p>
+                <p><strong>Key learnings:</strong> Medical device prototyping • experiment design • iterative
+                    optimization • cross‑disciplinary collaboration • translating lab findings toward accessible
+                    diagnostics.</p>
+
+            </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div id="modal2" class="modal-content" style="display: none;">
+            <button class="modal-close" onclick="closeModal()">X</button>
+            <div class="modal-body">
+                <h3>COPS – Lab‑on‑a‑chip water purification</h3>
+                <p><strong>Concept:</strong> A climate-adaptive water purification device utilizing a microfluidics
+                    approach.</p>
+                <p><strong>Impact:</strong> Designed specifically for deployment in disaster zones to rapidly isolate
+                    and neutralize contaminants.</p>
+                <p><strong>Recognition:</strong> Won 2nd prize in the Global Sustainability Challenge 2025‑26, Finalists
+                    in Techathon 10+ ESG&Sustainability track</p>
+                <div class="modal-links">
+                    <a href="https://youtu.be/zBzmP5ec0Ys" target="_blank" class="project-link">► Project video</a>
+                    <a href="https://drive.google.com/file/d/1dRfs58vNcBBe6jCKczKxq6xh0IEw1Kpp/view?usp=drive_link"
+                        target="_blank" class="project-link">📄Tech Presentation</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 3 -->
+        <div id="modal3" class="modal-content" style="display: none;">
+            <button class="modal-close" onclick="closeModal()">X</button>
+            <div class="modal-body">
+                <h3>PantoL – AI sign language translation app</h3>
+                <p><strong>Features:</strong> Real-time computer vision AI translating sign language to text and voice,
+                    bridging communication gaps.</p>
+                <p><strong>Traction:</strong> 150+ active testers, established 4 charitable partnerships, accepted into
+                    2 major business accelerators for market validation.</p>
+                <div class="modal-links">
+                    <a href="https://drive.google.com/file/d/1Pk4xb89lsvle_14jfHRlipgAJw_evnqS/view?usp=drive_link"
+                        target="_blank" class="project-link">📄Pitch deck</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 4 -->
+        <div id="modal4" class="modal-content" style="display: none;">
+            <button class="modal-close" onclick="closeModal()">X</button>
+            <div class="modal-body">
+                <h3>BIRD (Be Immediate in Reaching Dreams)</h3>
+                <p><strong>Functionality:</strong> An automated Telegram bot facilitating daily meditation exercises and
+                    anonymous positive thought exchanges.</p>
+                <p><strong>Metrics & Impact:</strong> Managed a team of 30+ members across 5+ countries; scaled to an
+                    audience of 5k+ users; hosted 10+ wellness webinars.</p>
+                <div class="modal-links">
+                    <a href="https://t.me/bird_project_bot" target="_blank" class="project-link">🤖 Bot link</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 5 -->
+        <div id="modal5" class="modal-content" style="display: none;">
+            <button class="modal-close" onclick="closeModal()">X</button>
+            <div class="modal-body">
+                <h3>AI in Russian education</h3>
+                <p><strong>Summary:</strong> Deep-dive research on real-world applications and current limitations of AI
+                    integration within standard curricula.</p>
+                <p><strong>Findings:</strong> Explored infrastructure gaps, teacher readiness, and proposed actionable
+                    frameworks for phased AI adoption.</p>
+            </div>
+        </div>
+
+        <!-- Modal 6 -->
+        <div id="modal6" class="modal-content" style="display: none;">
+            <button class="modal-close" onclick="closeModal()">X</button>
+            <div class="modal-body">
+                <h3>DNA extraction at home</h3>
+                <p><strong>Details:</strong> An engaging hands-on biotech experiment utilizing common household
+                    chemicals to successfully isolate DNA visually. Presented research on research competitions. Taught
+                    to 80+ kids the process of extracting DNA in biology-chemical camp</p>
+                <p><strong>Goal:</strong> Inspiring young students to engage with molecular biology through accessible
+                    DIY experiments.</p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Modal Logic
+        const modalOverlay = document.getElementById('modalOverlay');
+        const contents = document.querySelectorAll('.modal-content');
+
+        function openModal(id) {
+            // Hide all modal contents first
+            contents.forEach(content => { content.style.display = 'none'; });
+            // Show overlay and target modal content
+            modalOverlay.classList.add('active');
+            document.getElementById(id).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // prevent bg scrolling
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            contents.forEach(content => { content.style.display = 'none'; });
+            document.body.style.overflow = ''; // restore bg scrolling
+        }
+
+        function closeModalOnOutside(event) {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        }
+
+        // Close on ESC key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Intersection Observer for scroll animations (fade-in)
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // ECG Canvas Animation (Pure Vanilla JS)
+        const canvas = document.getElementById('ecgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let w = canvas.width = canvas.parentElement.clientWidth;
+        let h = canvas.height = canvas.parentElement.clientHeight;
+
+        window.addEventListener('resize', () => {
+            w = canvas.width = canvas.parentElement.clientWidth;
+            h = canvas.height = canvas.parentElement.clientHeight;
+        });
+
+        // P-QRS-T complex pattern points (relative Y offsets)
+        const ecgPattern = [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  // flat baseline
+            -5, -10, -5, 0, 0,                         // P wave
+            0, 0, 0,                                   // PR segment
+            10,                                        // Q wave
+            -60, 25,                                   // R and S wave
+            0, 0, 0, 0,                                // ST segment
+            -15, -20, -15, 0, 0,                       // T wave
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 // flat baseline
+        ];
+
+        let currentX = 0;
+        const speed = 2.5; // pixel movement per frame
+        const points = [];
+
+        // Draw retro grid background
+        function drawGrid() {
+            ctx.strokeStyle = 'rgba(0, 255, 204, 0.2)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < w; i += 15) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
+            }
+            for (let i = 0; i < h; i += 15) {
+                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke();
+            }
+        }
+
+        let patternIndex = 0;
+
+        function animate() {
+            // Fade effect for trails
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+            ctx.fillRect(0, 0, w, h);
+            drawGrid();
+
+            if (currentX >= w) {
+                currentX = 0;
+                points.length = 0; // wrap around
+            }
+
+            const baselineY = h / 2;
+            const yValue = baselineY + ecgPattern[patternIndex];
+            points.push({ x: currentX, y: yValue });
+
+            ctx.beginPath();
+            ctx.strokeStyle = '#00ffcc';
+            ctx.lineWidth = 2.5;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00ffcc';
+
+            if (points.length > 0) {
+                ctx.moveTo(points[0].x, points[0].y);
+                for (let i = 1; i < points.length; i++) {
+                    ctx.lineTo(points[i].x, points[i].y);
+                }
+            }
+            ctx.stroke();
+
+            ctx.beginPath();
+            // Leading glow dot
+            ctx.fillStyle = '#fff';
+            ctx.shadowColor = '#fff';
+            ctx.arc(currentX, yValue, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            currentX += speed;
+            patternIndex = (patternIndex + 1) % ecgPattern.length;
+
+            // Keep local segment lengths limited to create a fading tail
+            if (points.length > 150) {
+                points.shift();
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+
+</html>
